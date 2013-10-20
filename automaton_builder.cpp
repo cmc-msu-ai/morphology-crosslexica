@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "automaton builder.h"
-#include "prime numbers.h"
+#include "automaton_builder.h"
+#include "prime_numbers.h"
 #include <iostream>
 
 int AutomatonBuilder::addNode(const Automaton::Node& node, unsigned nodeHash) {

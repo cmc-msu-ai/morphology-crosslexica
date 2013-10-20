@@ -1,8 +1,8 @@
 #pragma once
 #include "automaton.h"
-#include "const automaton.h"
-#include "automaton builder.h"
-#include "morf characteristics.h"
+#include "const_automaton.h"
+#include "automaton_builder.h"
+#include "morf_characteristics.h"
 #include <fstream>
 
 // A class, that implements all functions for morfological analysis.

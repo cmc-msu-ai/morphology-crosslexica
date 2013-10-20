@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "morf characteristics.h"
+#include "morf_characteristics.h"
 
 const int MorfCharacteristics::charSizes[10] = {1, 6, 4, 4, 1, 1, 4, 2, 1, 1};
 const int MorfCharacteristics::NO_SHORT_ADJECTIVE_FORM = 15;

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "const automaton.h"
+#include "const_automaton.h"
 
 int ConstAutomaton::nextNode(int node, char c) const {
 	int lower = std::lower_bound(edges.begin() + nodes[node], edges.begin() + nodes[node + 1], Edge(c)) - edges.begin();

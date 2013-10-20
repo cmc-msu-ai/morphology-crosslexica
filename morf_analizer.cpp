@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "morf analizer.h"
+#include "morf_analizer.h"
 #include "stdio.h"
 #include "CLASSES.CPP"
 

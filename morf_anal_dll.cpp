@@ -3,8 +3,8 @@
 
 #include "stdafx.h"
 
-#include "morf analizer.h"
-#include "morf characteristics.h"
+#include "morf_analizer.h"
+#include "morf_characteristics.h"
 #include <fstream>
 #include <string>
 #include <vector>
