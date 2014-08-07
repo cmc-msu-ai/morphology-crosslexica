@@ -1,5 +1,4 @@
 #pragma once
-#include "fast erase vector.h"
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -9,9 +8,8 @@ using std::string;
 using std::ofstream;
 using std::ifstream;
 
-class AutomatonBuilder;
-
-class Automaton {
+// Automaton that cannot be changed - just read it from binary .aut file.
+class ConstAutomaton {
 	struct Edge {
 		char ch;
 		int to;
@@ -28,34 +26,31 @@ class Automaton {
 		bool operator==(const Edge& edge) const {
 			return ch == edge.ch && to == edge.to;
 		}
-		unsigned hash() const;
 	};
-	class Node {
-	public:
-		bool isTerm;
-		vector<Edge> edges;
 
-		Node(): isTerm(false) { }
-		explicit Node(bool term): isTerm(term) { }
-		Node(const Node& node): isTerm(node.isTerm), edges(node.edges) { }
-		unsigned hash() const;
-		int next(char c) const;
-		void link(char c, int node);
-		int relink(char c, int node);
-		bool operator==(const Node& node) const;
-		void writeToBinaryStream(ofstream& out) const;
-		bool readFromBinaryStream(ifstream& in);
-	};
-private:
 	int startNode;
-	FastEraseVector<Node> nodes;
+	vector<int> nodes;
+	vector<bool> isTerm;
+	vector<Edge> edges;
+	int nextNode(int node, char c) const;
 	void rightLanguage(int node, vector<string>& strs, string& myString) const;
 public:
-	friend class AutomatonBuilder;
-	explicit Automaton(int size = 0): nodes(size) { 
-		startNode = nodes.add(Node(false));
-	}
+	ConstAutomaton() { }
 	void allSuffixes(const string& word, vector<string>* res) const;
 	void writeToBinaryStream(ofstream& out) const;
 	void readFromBinaryStream(ifstream& in);
+	vector<int> degreeStatistics(const int k) const {
+		vector<int> res(k + 1, 0);
+		for (int i = 0; i < (int)nodes.size() - 1; ++i) {
+			if (nodes[i + 1] == nodes[i] && !isTerm[i]) {
+				continue;
+			}
+			if (nodes[i + 1] - nodes[i] > k) {
+				++res[k];
+			} else {
+				++res[nodes[i + 1] - nodes[i]];
+			}
+		}
+		return res;
+	}
 };
