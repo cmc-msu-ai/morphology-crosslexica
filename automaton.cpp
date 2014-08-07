@@ -1,6 +1,6 @@
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "automaton.h"
-#include "prime_numbers.h"
+#include "prime numbers.h"
 #include <algorithm>
 
 inline unsigned Automaton::Edge::hash() const {
